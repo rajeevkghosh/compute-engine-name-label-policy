@@ -8,11 +8,11 @@
 # with alias "plan"
 import "tfplan-functions" as plan
 
-prefix="fdep"
+prefix="dev"
 
 # Get all GCE Instances
 allInstances = plan.find_resources("google_compute_instance")
-print(allInstances)
+#print(allInstances)
 
 
 # Filter to GCE compute instances with violations
