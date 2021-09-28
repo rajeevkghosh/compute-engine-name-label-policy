@@ -8,20 +8,19 @@
 # with alias "plan"
 import "tfplan-functions" as plan
 
-# List of mandatory labels
-#mandatory_labels = ["env", "foo"]
-prefix="dep"
+prefix="fdep"
 
 # Get all GCE Instances
 allInstances = plan.find_resources("google_compute_instance")
+print(allInstances)
+
 
 # Filter to GCE compute instances with violations
 # Warnings will be printed for all violations since the last parameter is true
-#violatingInstances1= plan.filter_attribute_not_contains_list(allInstances,"labels", mandatory_labels, true)
-violatingInstances2= plan.filter_attribute_has_prefix (allInstances,"name", prefix, true)
+violatingInstances = plan.filter_attribute_has_prefix (allInstances,"name", prefix , true)
+print(violatingInstances)
 
 # Main rule
 main = rule {
-#length(violatingInstances1["messages"]) is 0 and length(violatingInstances2["messages"]) is 0
-length(violatingInstances2["messages"]) is 0
+length(violatingInstances["messages"]) is 0
 }
