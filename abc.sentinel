@@ -17,7 +17,7 @@ print(allInstances)
 
 # Filter to GCE compute instances with violations
 # Warnings will be printed for all violations since the last parameter is true
-violatingInstances = plan.filter_attribute_has_prefix (allInstances,"name", prefix , true)
+violatingInstances = plan.filter_attribute_does_not_have_prefix(allInstances,"name", prefix , true)
 print(violatingInstances)
 
 # Main rule
